@@ -12,7 +12,33 @@ function hasTargetSum(array, target) {
 
 /*
   Add written explanation of your solution here
-*/
+*/// index.js
+
+// Function to check if the array has two elements that sum up to the target
+function hasTargetSum(array, target) {
+  // Create a map to store the elements and their indices
+  const numMap = new Map();
+
+  // Loop through the array
+  for (let i = 0; i < array.length; i++) {
+    const num = array[i];
+    const complement = target - num;
+
+    // If the complement exists in the map, we found a pair that sums up to the target
+    if (numMap.has(complement)) {
+      return true;
+    }
+
+    // Store the current element and its index in the map
+    numMap.set(num, i);
+  }
+
+  // If no such pair is found, return false
+  return false;
+}
+
+module.exports = hasTargetSum;
+
 
 // You can run `node index.js` to view these console logs
 if (require.main === module) {
